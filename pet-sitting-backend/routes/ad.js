@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   getAllAds,
-  getAdbyId,
+  getAdById,
   getAdByOwnerId,
   updateAd,
   postAd,
@@ -9,9 +9,9 @@ import {
 } from "../controllers/ad.controller.js";
 export const adRouter = Router();
 
-adRouter.get("/", getAllads);
-adRouter.get("/:id", getadById);
-asRouter.get("/owner/:owner_id", getAdByOwnerId);
+adRouter.get("/", getAllAds);
+adRouter.get("/:id", getAdById);
+adRouter.get("/owner/:owner_id", getAdByOwnerId);
 adRouter.post("/createAd", postAd);
 adRouter.put("/:id", updateAd);
 adRouter.delete("/:id", deleteAd);

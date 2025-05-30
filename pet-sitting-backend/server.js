@@ -10,7 +10,7 @@ import { userRouter } from "./routes/user.js";
 import { roleRouter } from "./routes/role.js";
 
 const app = express();
-
+console.log('test');
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +22,6 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-
 app.use("/api/ads", adRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/users", userRouter);
@@ -36,5 +35,7 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.status || 500).json({ error: err.message || "Server error" });
 });
+
+
 
 export default app;

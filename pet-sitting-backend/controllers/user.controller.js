@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 
 export const getAllUsers = async (req, res, next) => {
   try {
+    console.log ("blaaaa");
     const user = res.json(await User.findAll());
     return res.json(user);
   } catch (err) {

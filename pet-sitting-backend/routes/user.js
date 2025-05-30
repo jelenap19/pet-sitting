@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { getAllUsers, getUserById, postUser, updateUser, deleteUser } from '../controllers/user.controller.js';
 export const userRouter = Router();
+console.log("hello");
 
 userRouter.get('/',   getAllUsers);
 userRouter.get('/:id', getUserById);

@@ -1,21 +1,23 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { Home } from "./pages/Home";
+import { PostDetail } from "./pages/PostDetail";
+import { MyProfile } from "./pages/MyProfile";
 
 function App() {
-  const apiCall = async () => {
-    try {
-      const { data } = await axios.get('http://88.200.63.148:4000/');
-      console.log('Response:', data);
-    } catch (err) {
-      console.error(' API call failed:', err);
-    }
-  };
-
   return (
     <div className="App">
-      <button onClick={apiCall}>
-        Make API Call
-      </button>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="profile" element={<MyProfile />} />
+            <Route path="post/:id" element={<PostDetail />} />
+            {/* <Route path="login"   element={<LoginPage />} /> */}
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

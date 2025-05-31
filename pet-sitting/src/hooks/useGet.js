@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../authorization/axiosConfig.js";
 
 export const useGet = (route) => {
   const [data, setData] = useState(null);

@@ -13,7 +13,7 @@ function App() {
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="profile" element={<MyProfile />} />
-            <Route path="post/:id" element={<PostDetail />} />
+            <Route path="post/:current_ad_id" element={<PostDetail />} />
             {/* <Route path="login"   element={<LoginPage />} /> */}
           </Route>
         </Routes>

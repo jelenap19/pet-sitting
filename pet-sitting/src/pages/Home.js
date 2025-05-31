@@ -9,9 +9,9 @@ export const Home = () => {
   return (
     <div>
   <ul> 
-    {Allads.map ( ad => (
-      <Link key={ad.id} to={`/post/${ad.id}`} style={{ textDecoration: 'none', color: 'inherit' }} >
-    <Post key = {ad.id} title= {ad.title} description={ad.description}/>
+    {Allads.map ( a => (
+      <Link key={a.id} to={`/post/${a.id}`} style={{ textDecoration: 'none', color: 'inherit' }} >
+    <Post key = {a.id} title= {a.title} description={a.description}/>
     </Link>
   ))}
   </ul>

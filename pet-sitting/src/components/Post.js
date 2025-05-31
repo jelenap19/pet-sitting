@@ -7,7 +7,7 @@ export const Post = ({ image, title, description }) =>  {
         <div className="col-3">
           <img
             src={image} 
-            alt={"image not loaded"}
+            alt={"not loaded"}
             className="img-fluid rounded-start"
           />
         </div>

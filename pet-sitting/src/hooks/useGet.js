@@ -7,6 +7,11 @@ export const useGet = (route) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if(!route){
+      setLoading(true);
+      setData(null);
+      return;
+    }
     let isMounted = true;
     setLoading(true);
     setError(null);
@@ -34,5 +39,6 @@ export const useGet = (route) => {
     };
   }, [route]);
 
-  return {data,loading, error } 
+  
+  return {data,loading, error} 
 };

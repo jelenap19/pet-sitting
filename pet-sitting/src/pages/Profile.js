@@ -115,7 +115,7 @@ export const Profile = () => {
 
       setEditing(false);
 
-      navigate(`username/${updatedUser.username}`, { replace: true });
+      navigate(`/username/${updatedUser.username}`, { replace: true });
     } catch (err) {
       console.error(err);
       setSaveError(err.response?.data?.message || "Failed to save changes.");

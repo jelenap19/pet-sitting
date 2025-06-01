@@ -10,10 +10,10 @@ import "./App.css";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { PostDetail } from "./pages/PostDetail";
-import { MyProfile } from "./pages/MyProfile";
-import { UserProfile } from "./pages/UserProfile";
+import { Profile } from "./pages/Profile";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import {AddPost} from "./pages/AddPost";
 
 const ProtectedRoute = ({ children }) => {
   const { authUser, loading } = useContext(AuthContext);
@@ -36,17 +36,18 @@ function App() {
 
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
-            <Route path="post/:current_post_id" element={<PostDetail />} />
-            <Route path="profile/:username" element={<UserProfile />} />
-
+            <Route path="post/:current_ad_id" element={<PostDetail />} />
+            <Route path="username/:username" element={<Profile />} />
             <Route
-              path="myprofile"
+              path="add-post"
               element={
                 <ProtectedRoute>
-                  <MyProfile />
+                  <AddPost />
                 </ProtectedRoute>
-              }
-            />
+              } />
+
+         
+          
 
             <Route
               path="*"

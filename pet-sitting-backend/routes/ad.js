@@ -5,9 +5,12 @@ import {
   getAdById,
   getAdByOwnerId,
   updateAd,
-  postAd,
+  createAd as postAd,
   deleteAd,
+  uploadAdImage
 } from "../controllers/ad.controller.js";
+import { upload } from "../middleware/upload.middleware.js";
+
 export const adRouter = Router();
 
 adRouter.get("/", getAllAds);
@@ -16,3 +19,4 @@ adRouter.get("/owner/:owner_id", getAdByOwnerId);
 adRouter.post("/createAd", requireAuth, requireRole([1, 2]), postAd);
 adRouter.put("/:id", requireAuth, requireRole([1, 2]), updateAd);
 adRouter.delete("/:id", requireAuth, requireRole([1, 2]), deleteAd);
+adRouter.post("/:id/image", requireAuth, requireRole([1, 2]), upload.single("image"), uploadAdImage);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE =
-   "http://localhost:7000/api";
+   "http://88.200.63.148:7000/api";
 
 axios.defaults.baseURL = API_BASE;
 

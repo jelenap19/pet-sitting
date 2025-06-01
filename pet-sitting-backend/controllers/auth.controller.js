@@ -15,6 +15,7 @@ export const register = async (req, res, next) => {
       username,
       password,
       description = "",
+      avatar_url = "",
     } = req.body;
 
     if( !first_name) {
@@ -52,6 +53,7 @@ export const register = async (req, res, next) => {
       description,
       password,
       role_id: 2,
+      avatar_url: "/uploads/default_avatar.png",
     });
 
     const payload = { userId: newUser.id, role: "REGISTERED" };
@@ -66,6 +68,7 @@ export const register = async (req, res, next) => {
         username: newUser.username,
         description: newUser.description,
         role_id: newUser.role_id,
+        avatar_url: newUser.avatar_url,
         created_at: newUser.created_at,
       },
       token,
@@ -105,6 +108,7 @@ export const login = async (req, res, next) => {
         description: user.description,
         role_id: user.role_id,
         created_at: user.created_at,
+        avatar_url: user.avatar_url,
       },
       token,
     });

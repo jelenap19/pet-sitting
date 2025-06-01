@@ -9,5 +9,6 @@ CREATE TABLE
         password_hash VARCHAR(255) NOT NULL,
         role_id INT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        avatar_url VARCHAR(255) NULL,
         CONSTRAINT fk_users_role FOREIGN KEY (role_id) REFERENCES roles (id) ON UPDATE CASCADE ON DELETE RESTRICT
     ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_unicode_ci;

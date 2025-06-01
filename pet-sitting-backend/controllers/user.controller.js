@@ -9,7 +9,15 @@ export const getAllUsers = async (req, res, next) => {
     next(err);
   }
 };
-
+export const getUserByUsername = async (req, res, next) => {
+  try {
+    const user = await User.findByUsername(req.params.username);
+    if (!user) return res.sendStatus(404);
+    return res.json(user);
+  } catch (err) {
+    next(err);
+  }
+};
 export const getUserById = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -49,3 +57,20 @@ export const deleteUser = async (req, res, next) => {
     next(err);
   }
 };
+
+
+export const uploadProfilePicture = async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+   if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    const avatarUrl = `/uploads/${req.file.filename}`;
+
+    await User.update(userId, { avatar_url: avatarUrl });
+    return res.json({ avatar_url: avatarUrl });
+  } catch (err) {
+    next(err);
+  }
+};
+

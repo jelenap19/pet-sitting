@@ -39,6 +39,7 @@ export const getCommentsByAdId = async (req, res, next) => {
 
 export const postComment = async (req, res, next) => {
   try {
+    console.log("tu smo");
     const com = await Comment.create(req.body);
     return res.status(201).json(com);
   } catch (err) {

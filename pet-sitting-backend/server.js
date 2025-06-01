@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import "dotenv/config.js";
+import path from "path";
 
 import { adRouter } from "./routes/ad.js";
 import { commentRouter } from "./routes/comment.js";
@@ -11,6 +12,8 @@ import { roleRouter } from "./routes/role.js";
 import {authRouter} from "./routes/auth.js";
 
 const app = express();
+
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))); 
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,11 +25,13 @@ app.use(
   })
 );
 app.use(morgan("dev"));
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 app.use("/api/ads", adRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/users", userRouter);
 app.use("/api/roles", roleRouter);
 app.use("/api/auth", authRouter);
+
 
 app.use((req, res) => {
   res.status(404).json({ error: "Wrong route" });

@@ -1,10 +1,8 @@
 import React from "react";
-// import { Card } from "react-bootstrap";
 import { useGet } from "../hooks/useGet";
-//  import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const Comment = ({cid}) => {
-
+export const Comment = ({ cid }) => {
   const { data: comment, loading, error } = useGet(`comments/${cid}`);
   const user_id = comment ? comment.owner_id : null;
   const { data: user, loading2, error2 } = useGet(`users/${user_id}`);
@@ -19,10 +17,22 @@ export const Comment = ({cid}) => {
       </>
     );
 
-
   return (
     <div className="border rounded p-3 mb-3">
-      <h6 className="text-secondary mb-2">@{user.username}</h6>
+      <h6 className="text-secondary mb-4">
+  {user.first_name} {user.last_name}{" "}
+  <small className="text-muted">
+    (
+    <Link
+      to={`/username/${user.username}`}
+      className="text-muted"
+      style={{ textDecoration: "none" }}
+    >
+      @{user.username}
+    </Link>
+    )
+  </small>
+</h6>
       <p className="mb-0">{comment.comment_text}</p>
     </div>
   );

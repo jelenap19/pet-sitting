@@ -1,6 +1,3 @@
-// 
-
-
 import React, { useContext } from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -16,11 +13,7 @@ export const NavBar = () => {
   };
 
   return (
-    <Navbar
-      expand="lg"
-      style={{ backgroundColor: "#ff69b4" }}
-      variant="light"
-    >
+    <Navbar expand="lg" style={{ backgroundColor: "#ff69b4" }} variant="light">
       <Container>
         <Navbar.Brand
           as={NavLink}
@@ -45,29 +38,35 @@ export const NavBar = () => {
               Home
             </Nav.Link>
 
-            <Nav.Link
-              as={NavLink}
-              to="/add-post"
-              style={({ isActive }) => ({
-                color: isActive ? "white" : "rgba(255, 255, 255, 0.8)",
-                marginRight: "1rem",
-                fontSize: "1rem",
-              })}
-            >
-              Add Post
-            </Nav.Link>
+            
+            {authUser && (
+              <Nav.Link
+                as={NavLink}
+                to="/add-post"
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "rgba(255, 255, 255, 0.8)",
+                  marginRight: "1rem",
+                  fontSize: "1rem",
+                })}
+              >
+                Add Post
+              </Nav.Link>
+            )}
 
-            <Nav.Link
-              as={NavLink}
-              to="/profile"
-              style={({ isActive }) => ({
-                color: isActive ? "white" : "rgba(255, 255, 255, 0.8)",
-                marginRight: "1rem",
-                fontSize: "1rem",
-              })}
-            >
-              My Profile
-            </Nav.Link>
+    
+            {authUser && (
+              <Nav.Link
+                as={NavLink}
+                to={`/username/${authUser.user.username}`}
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "rgba(255, 255, 255, 0.8)",
+                  marginRight: "1rem",
+                  fontSize: "1rem",
+                })}
+              >
+                My Profile
+              </Nav.Link>
+            )}
           </Nav>
 
           <Nav>

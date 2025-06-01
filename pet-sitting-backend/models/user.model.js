@@ -16,7 +16,7 @@ export const User = {
 
   async findByUsername(username) {
     const [rows] = await pool.query(
-      "SELECT id, first_name, last_name, email, username, description, role_id, created_at, password_hash FROM users WHERE username = ?",
+      "SELECT id, first_name, last_name, email, username, description, role_id, created_at, password_hash, avatar_url FROM users WHERE username = ?",
       [username]
     );
     return rows[0] || null;
@@ -31,11 +31,12 @@ export const User = {
       username,
       password,
       role_id,
+      avatar_url = "uploads/default_avatar.png",
     } = data;
 
     const passwordHash1 = await bcrypt.hash(password, SALT_ROUNDS);
     const [res] = await pool.query(
-      "INSERT INTO users (first_name, last_name, email, description, username, password_hash, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO users (first_name, last_name, email, description, username, password_hash, role_id, avatar_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [
         first_name,
         last_name,
@@ -44,6 +45,7 @@ export const User = {
         username,
         passwordHash1,
         role_id,
+        avatar_url,
       ]
     );
     return {
@@ -55,6 +57,7 @@ export const User = {
       description,
       role_id,
       created_at: new Date().toISOString(),
+      avatar_url,
     };
   },
 
@@ -67,15 +70,15 @@ export const User = {
       description = "",
       password,
       role_id,
+      avatar_url = "",
     } = data;
 
-    // let password;
     if (password) {
       passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
       await pool.query(
         `UPDATE users
            SET first_name = ?, last_name = ?, email = ?,
-               username = ?, description = ?, password_hash = ?, role_id = ?
+               username = ?, description = ?, password_hash = ?, role_id = ?, avatar_url = ?
          WHERE id = ?`,
         [
           first_name,
@@ -85,6 +88,7 @@ export const User = {
           description,
           passwordHash,
           role_id,
+          avatar_url,
           id,
         ]
       );
@@ -92,9 +96,18 @@ export const User = {
       await pool.query(
         `UPDATE users
            SET first_name = ?, last_name = ?, email = ?,
-               username = ?, description = ?, role_id = ?
+               username = ?, description = ?, role_id = ?, avatar_url = ?
          WHERE id = ?`,
-        [first_name, last_name, email, username, description, role_id, id]
+        [
+          first_name,
+          last_name,
+          email,
+          username,
+          description,
+          role_id,
+          avatar_url,
+          id,
+        ]
       );
     }
     return this.findById(id);
@@ -108,6 +121,7 @@ export const User = {
   async verifyPassword(username, plainPassword) {
     const user = await this.findByUsername(username);
     if (!user) return false;
-    return bcrypt.compare(plainPassword, user.password);
+    console.log("User found:", user);
+    return bcrypt.compare(plainPassword, user.password_hash);
   },
 };

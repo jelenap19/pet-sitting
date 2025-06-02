@@ -87,7 +87,7 @@ export const PostDetail = () => {
         <small className="text-muted">
           (
           <Link
-            to={`username/:user.username}`}
+            to={`/username/${user.username}`}
             className="text-muted"
             style={{ textDecoration: "none" }}
           >

@@ -1,6 +1,8 @@
 import axios from "axios";
 
-//const API_BASE =   "http://88.200.63.148:7000/api";
+const API_BASE =
+  process.env.REACT_APP_API_BASE_URL ||
+  "http://88.200.63.148:7000";
 
 axios.defaults.baseURL = API_BASE;
 

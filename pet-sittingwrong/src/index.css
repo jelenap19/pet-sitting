@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --bs-primary: #ff69b4;
+  --bs-secondary: #ffe4e1;
+  --bs-body-bg: #fffaf0;
+  --bs-body-color: #333;
+}
+
+.navbar.bg-primary {
+  background-color: #ff1493 !important;
+}

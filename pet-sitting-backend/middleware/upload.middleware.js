@@ -1,10 +1,10 @@
 import multer from 'multer';
 import path from 'path';
-const UPLOADS_DIR = process.env.UPLOADS_DIR || path.join(__dirname, "..", 'uploads');
+//const UPLOADS_DIR = process.env.UPLOADS_DIR || path.join(__dirname, "..", 'uploads');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(process.cwd(), 'UPLOADS_DIR'));
+    cb(null, path.join(process.cwd(), 'uploads'));
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 
-export const UPLOADS_DIR = multer({
+export const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://88.200.63.148:5198/api';
+const API_BASE = 'http://88.200.63.148:7000/api';
 
 export const registerUser = async (userData) => {
   console.log('Registering user with data:', userData);

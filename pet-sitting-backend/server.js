@@ -31,6 +31,8 @@ app.use("/api/comments", commentRouter);
 app.use("/api/users", userRouter);
 app.use("/api/roles", roleRouter);
 app.use("/api/auth", authRouter);
+app.use("/uploads", express.static(UPLOADS_DIR));
+
 
 
 app.use((req, res) => {

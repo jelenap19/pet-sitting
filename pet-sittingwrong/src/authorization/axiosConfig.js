@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const API_BASE =
-   "http://88.200.63.148:7000/api";
+   "http://88.200.63.148:7000";
 
 axios.defaults.baseURL = API_BASE;
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:5198/api";
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:7000";
 
 
 axios.interceptors.request.use((config) => {
